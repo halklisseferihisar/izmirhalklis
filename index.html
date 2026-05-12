@@ -166,9 +166,18 @@ z-index:99999;
   radial-gradient(circle at bottom right,rgba(255,0,60,.05),transparent 30%),
   #050505;
 }
-.principles-grid,.district-grid,.library-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;
+.principles-grid,
+.district-grid,
+.library-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
 }
+
+.principles-grid{
+  grid-template-columns:repeat(3,1fr);
+}
+
 .principle-box,.district-card,.library-card{
   position:relative;background:linear-gradient(145deg,#121212,#090909);
   border-radius:28px;padding:42px;overflow:hidden;transition:.35s;
@@ -264,6 +273,12 @@ z-index:99999;
   .hero img{
   height:420px;
   object-fit:cover;
+}
+
+ nav.active{
+    display:flex;
+  }
+
 }
 
 
@@ -367,11 +382,111 @@ z-index:99999;
 
 
 
+@media(max-width:768px){
+
+  .principles-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+
+
+
+#introScreen{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100vh;
+  background:black;
+  z-index:999999;
+  overflow:hidden;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#introVideo{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.intro-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.45);
+  text-align:center;
+}
+
+.intro-overlay h1{
+  font-size:72px;
+  color:white;
+  letter-spacing:5px;
+  text-shadow:0 0 35px rgba(255,0,60,.8);
+}
+
+.intro-overlay p{
+  margin-top:18px;
+  color:#ddd;
+  font-size:22px;
+}
+
+.intro-overlay button{
+  margin-top:35px;
+  padding:14px 28px;
+  border:none;
+  border-radius:14px;
+  background:#ff214f;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.intro-overlay button:hover{
+  transform:scale(1.06);
+  background:#ff4d73;
+}
+
 
 </style>
 </head>
 
 <body>
+
+
+
+
+
+<div id="introScreen">
+
+  <video autoplay muted playsinline id="introVideo">
+
+    <source src="intro.mp4" type="video/mp4">
+
+  </video>
+
+  <div class="intro-overlay">
+
+
+    
+
+  </div>
+
+</div>
+
+
 
 <div class="mouse-glow"></div>
 
@@ -494,7 +609,7 @@ class="login-btn">
 <section class="principles-section" id="ilkelerimiz">
   <div class="section-title">
     <h1>İlkelerimiz</h1>
-    <p>Halk-Lis İzmir olarak Atatürk’ün altı temel ilkesini rehber kabul ediyoruz.</p>
+    <p>Halkçı Liseliler olarak Atatürk’ün altı temel ilkesini rehber kabul ediyoruz.</p>
   </div>
 
   <div class="principles-grid">
@@ -800,7 +915,6 @@ document.addEventListener("mousemove", (e) => {
   glow.style.top = e.clientY + "px";
 });
 
-function toggleMenu(){
   function toggleMenu(){
   const menu =
   document.getElementById("mobileMenu");
@@ -830,7 +944,6 @@ setInterval(() => {
   },300);
 },5000);
 
-}
 
 window.addEventListener("scroll", () => {
   const section = document.querySelector(".stats-section");
@@ -965,6 +1078,7 @@ function revealOnScroll(){
       el.classList.add("active");
     }
   });
+ }
 
 
 window.addEventListener("scroll", revealOnScroll);
@@ -1107,7 +1221,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+const intro =
+document.getElementById("introScreen");
 
+const introVideo =
+document.getElementById("introVideo");
+
+function skipIntro(){
+
+  intro.style.display = "none";
+
+}
+
+introVideo.onended = () => {
+
+  intro.style.display = "none";
+
+};
 
 
 
