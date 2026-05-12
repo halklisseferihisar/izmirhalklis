@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Üye Girişi | Halk-Lis İzmir</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  min-height:100vh;
+  background:
+  radial-gradient(circle at top left,rgba(255,0,60,.15),transparent 35%),
+  radial-gradient(circle at bottom right,rgba(255,0,60,.10),transparent 30%),
+  #050505;
+  color:white;
+  font-family:Arial,sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+}
+
+.box{
+  width:100%;
+  max-width:460px;
+  background:linear-gradient(145deg,#121212,#080808);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:30px;
+  padding:38px;
+  box-shadow:0 25px 70px rgba(255,0,60,.12);
+}
+
+h1{
+  color:#ff214f;
+  text-align:center;
+  margin-bottom:25px;
+  font-size:34px;
+}
+
+.tabs{
+  display:flex;
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.tabs button{
+  flex:1;
+  padding:13px;
+  border:none;
+  border-radius:12px;
+  background:#111;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.tabs button.active{
+  background:#ff214f;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  margin-bottom:14px;
+  border-radius:12px;
+  border:1px solid #222;
+  background:#0b0b0b;
+  color:white;
+  outline:none;
+}
+
+input:focus{
+  border-color:#ff214f;
+}
+
+button.main{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:#ff214f;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.info{
+  margin-top:18px;
+  color:#cfcfcf;
+  text-align:center;
+  font-size:14px;
+}
+
+.back{
+  display:block;
+  text-align:center;
+  margin-top:20px;
+  color:#ff214f;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <h1>Üye Sistemi</h1>
+
+  <div class="tabs">
+    <button id="loginTab" class="active" onclick="showLogin()">Giriş Yap</button>
+    <button id="registerTab" onclick="showRegister()">Kayıt Ol</button>
+  </div>
+
+  <div id="loginForm">
+    <input id="loginUser" placeholder="Kullanıcı adı">
+    <input id="loginPass" type="password" placeholder="Şifre">
+    <button class="main" onclick="login()">Giriş Yap</button>
+  </div>
+
+  <div id="registerForm" style="display:none">
+    <input id="regName" placeholder="Ad Soyad">
+    <input id="regUser" placeholder="Kullanıcı adı">
+    <input id="regPass" type="password" placeholder="Şifre">
+    <button class="main" onclick="register()">Kayıt Ol</button>
+  </div>
+
+  <p class="info" id="status">
+    Üye Olarak Avantajlardan Yararlana bilirsiniz.
+  </p>
+
+  <a href="index.html" class="back">Ana Sayfaya Dön</a>
+
+</div>
+
+<script>
+function getUsers(){
+  return JSON.parse(localStorage.getItem("users")) || [];
+}
+
+function saveUsers(users){
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+function showLogin(){
+  document.getElementById("loginForm").style.display = "block";
+  document.getElementById("registerForm").style.display = "none";
+  document.getElementById("loginTab").classList.add("active");
+  document.getElementById("registerTab").classList.remove("active");
+}
+
+function showRegister(){
+  document.getElementById("loginForm").style.display = "none";
+  document.getElementById("registerForm").style.display = "block";
+  document.getElementById("registerTab").classList.add("active");
+  document.getElementById("loginTab").classList.remove("active");
+}
+
+function register(){
+  const name = document.getElementById("regName").value.trim();
+  const username = document.getElementById("regUser").value.trim();
+  const password = document.getElementById("regPass").value.trim();
+
+  if(!name || !username || !password){
+    alert("Boş alan bırakma kanka");
+    return;
+  }
+
+  const users = getUsers();
+
+  if(users.some(u => u.username === username)){
+    alert("Bu kullanıcı adı zaten var");
+    return;
+  }
+
+  users.push({
+    id: Date.now(),
+    name,
+    username,
+    password,
+    date: new Date().toLocaleString("tr-TR")
+  });
+
+  saveUsers(users);
+
+  alert("Kayıt başarılı, şimdi giriş yapabilirsin");
+  showLogin();
+}
+
+function login(){
+  const username = document.getElementById("loginUser").value.trim();
+  const password = document.getElementById("loginPass").value.trim();
+
+  const users = getUsers();
+
+  const user = users.find(u => u.username === username && u.password === password);
+
+  if(!user){
+    alert("Kullanıcı adı veya şifre yanlış");
+    return;
+  }
+
+  localStorage.setItem("currentUser", JSON.stringify(user));
+
+  alert("Giriş başarılı");
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

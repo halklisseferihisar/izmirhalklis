@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel | Halk-Lis İzmir</title>
+  <style>
+    body{background:#050505;color:white;font-family:Arial;padding:60px}
+    .box{max-width:700px;margin:auto;background:#111;padding:35px;border-radius:24px;border:1px solid #ff214f}
+    input,textarea,button{width:100%;padding:14px;margin:10px 0;border-radius:10px;border:none}
+    button{background:#ff214f;color:white;font-weight:bold;cursor:pointer}
+    h1{color:#ff214f}
+  </style>
+</head>
+<body>
+
+<div class="box" id="loginBox">
+  <h1>Admin Giriş</h1>
+  <input type="password" id="password" placeholder="Şifre">
+  <button onclick="login()">Giriş Yap</button>
+</div>
+
+<div class="box" id="adminBox" style="display:none">
+  <h1>Haber / Duyuru Ekle</h1>
+  <input id="title" placeholder="Başlık">
+  <textarea id="text" placeholder="Açıklama"></textarea>
+  <button onclick="addNews()">Kaydet</button>
+  <button onclick="clearNews()">Tüm Haberleri Sil</button>
+</div>
+
+<script>
+function login(){
+  const pass = document.getElementById("password").value;
+
+  if(pass === "Halklisizmir#?!123?#!123!!0912511881"){
+
+
+
+const logs = JSON.parse(localStorage.getItem("adminLogs")) || [];
+
+
+<h2>Giriş Logları</h2>
+<div id="logList"></div>
+
+logs.unshift({
+  date: new Date().toLocaleString("tr-TR"),
+  action: "Admin paneline giriş yapıldı"
+});
+
+localStorage.setItem("adminLogs", JSON.stringify(logs));
+
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("adminBox").style.display = "block";
+  }else{
+    alert("Şifre yanlış");
+  }
+}
+
+function addNews(){
+  const title = document.getElementById("title").value;
+  const text = document.getElementById("text").value;
+
+  if(!title || !text){
+    alert("Boş bırakma kanka");
+    return;
+  }
+
+  const news = JSON.parse(localStorage.getItem("news")) || [];
+
+  news.push({title, text});
+
+  localStorage.setItem("news", JSON.stringify(news));
+
+  alert("Haber eklendi");
+  document.getElementById("title").value = "";
+  document.getElementById("text").value = "";
+}
+
+function clearNews(){
+  localStorage.removeItem("news");
+  alert("Haberler silindi");
+}
+</script>
+
+
+
+<script>
+
+const searchInput =
+document.getElementById("districtSearch");
+
+const districtCards =
+document.querySelectorAll(".district-card");
+
+searchInput.addEventListener("input",()=>{
+
+  const value =
+  searchInput.value.toLowerCase();
+
+  districtCards.forEach(card=>{
+
+    const text =
+    card.innerText.toLowerCase();
+
+    if(text.includes(value)){
+
+      card.style.display = "block";
+
+    }else{
+
+      card.style.display = "none";
+
+    }
+
+  });
+
+});
+
+</script>
+
+</body>
+
+
+</body>
+
+
+</html>

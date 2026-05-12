@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHP | Halk-Lis İzmir</title>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    body{
+      font-family:Arial,sans-serif;
+      background:#050505;
+      color:white;
+      min-height:100vh;
+    }
+
+    .page{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:80px 10%;
+      background:
+        radial-gradient(circle at top left, rgba(255,0,60,.12), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(255,0,60,.08), transparent 30%),
+        #050505;
+    }
+
+    .card{
+      max-width:1000px;
+      background:linear-gradient(145deg,#121212,#080808);
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:32px;
+      padding:60px;
+      box-shadow:0 25px 70px rgba(0,0,0,.45);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:6px;
+      background:linear-gradient(90deg,#ff003c,#ff5b7e);
+    }
+
+    .tag{
+      display:inline-block;
+      color:#ff214f;
+      background:rgba(255,33,79,.1);
+      border:1px solid rgba(255,33,79,.25);
+      padding:8px 16px;
+      border-radius:30px;
+      font-weight:bold;
+      margin-bottom:25px;
+    }
+
+    h1{
+      font-size:56px;
+      color:#ff214f;
+      margin-bottom:25px;
+    }
+
+    p{
+      color:#d5d5d5;
+      font-size:20px;
+      line-height:1.9;
+    }
+
+    .arrows{
+      margin-top:35px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+      gap:14px;
+    }
+
+    .arrow{
+      background:#111;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:16px;
+      color:#f1f1f1;
+      text-align:center;
+      font-weight:bold;
+    }
+
+    .back{
+      display:inline-block;
+      margin-top:40px;
+      color:white;
+      background:#ff214f;
+      text-decoration:none;
+      padding:14px 24px;
+      border-radius:12px;
+      font-weight:bold;
+    }
+
+    @media(max-width:768px){
+      .card{padding:35px 25px}
+      h1{font-size:38px}
+      p{font-size:17px}
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="page">
+    <div class="card">
+
+      <span class="tag">Cumhuriyet Halk Partisi</span>
+
+      <h1>CHP</h1>
+
+      <p>
+        Türkiye Cumhuriyeti'nin kurucusu ve ilk cumhurbaşkanı Mustafa Kemal Atatürk
+        tarafından kurulan parti, Türkiye'nin en eski siyasi partisidir. Logosu,
+        Kemalizm'in temel ilkelerini temsil eden Altı Ok'tan oluşmaktadır:
+        cumhuriyetçilik, inkılapçılık, laiklik, halkçılık, milliyetçilik ve devletçilik.
+      </p>
+
+      <div class="arrows">
+        <div class="arrow">Cumhuriyetçilik</div>
+        <div class="arrow">İnkılapçılık</div>
+        <div class="arrow">Laiklik</div>
+        <div class="arrow">Halkçılık</div>
+        <div class="arrow">Milliyetçilik</div>
+        <div class="arrow">Devletçilik</div>
+      </div>
+
+      <a href="index.html" class="back">Ana Sayfaya Dön</a>
+
+    </div>
+  </section>
+
+</body>
+</html>

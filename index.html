@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halk-Lis İzmir</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+.social-media-section{
+  margin-top:50px;
+}
+
+.social-media-section h3{
+  color:#ff214f;
+  margin-bottom:25px;
+}
+
+.social-media-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+}
+
+.social-card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 22px;
+  border-radius:16px;
+  background:#111;
+  border:1px solid rgba(255,255,255,.08);
+  color:white;
+  text-decoration:none;
+  transition:.3s;
+  font-weight:bold;
+}
+
+.social-card i{
+  color:#ff214f;
+  font-size:20px;
+}
+
+.social-card:hover{
+  transform:translateY(-4px);
+  border-color:#ff214f;
+  box-shadow:0 0 25px rgba(255,0,60,.15);
+}
+
+
+
+
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:#050505;color:white;overflow-x:hidden}
+
+.mouse-glow{
+  position:fixed;width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,0,60,.22),transparent 70%);
+  pointer-events:none;transform:translate(-50%,-50%);
+  z-index:1;mix-blend-mode:screen;
+}
+body > *:not(.mouse-glow){position:relative;z-index:2}
+
+.floating-socials{
+  position:fixed;right:18px;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:14px;z-index:9999;
+}
+.floating-socials a{
+  width:48px;height:48px;border-radius:50%;background:#111;
+  border:1px solid #ff214f;color:#ff214f;
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;font-size:20px;transition:.3s;
+}
+.floating-socials a:hover{background:#ff214f;color:white;transform:translateX(-5px)}
+
+.quote-bar{background:#000;text-align:center;border-bottom:1px solid #1f1f1f}
+.ata-eyes-container{width:100%;height:180px;overflow:hidden;background:#000}
+.ata-eyes-img{width:100%;height:100%;object-fit:cover;display:block}
+.quote-text{padding:18px 20px;color:#fff;font-size:22px;font-weight:700;transition:.4s}
+
+.top-member{
+  background:#8b0015;color:white;text-align:center;padding:10px;
+  font-weight:bold;border-bottom:2px solid #ff214f;
+}
+.top-member a{
+  background:white;color:#8b0015;padding:7px 14px;border-radius:6px;
+  text-decoration:none;margin-left:10px;font-size:14px;
+}
+
+.important-days{
+  background:#111;color:white;display:flex;justify-content:center;
+  gap:20px;padding:10px;font-size:14px;font-weight:bold;flex-wrap:wrap;
+}
+.days-slider{color:#ffd2d9}
+
+.navbar{
+  background:#111;border-top:4px solid #e60023;border-bottom:2px solid #e60023;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 10%;position:sticky;top:0;z-index:999;
+}
+.brand{color:#ff214f;font-weight:900;font-size:24px;text-decoration:none}
+nav{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-weight:700;transition:.3s}
+nav a:hover{color:#ff214f}
+.ata-img{width:70px;height:55px;object-fit:cover;border-radius:8px}
+.menu-toggle{
+  display:none;background:#ff214f;color:white;border:none;
+  padding:10px 15px;border-radius:10px;font-size:22px;cursor:pointer;
+}
+
+.hero img{width:100%;height:600px;object-fit:cover;display:block}
+
+.stats-section{padding:80px 10%}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
+.stats-card{
+  display:block;background:linear-gradient(145deg,#111,#090909);
+  border:1px solid rgba(255,255,255,.08);border-radius:30px;
+  padding:45px;text-align:center;text-decoration:none;color:white;
+  transition:.35s;box-shadow:0 10px 45px rgba(0,0,0,.45);
+}
+.stats-card:hover{transform:translateY(-8px);border-color:#ff214f;box-shadow:0 18px 55px rgba(255,0,60,.22)}
+.stats-card h2{color:#ff214f;font-size:32px;margin-bottom:18px}
+.counter{font-size:70px;font-weight:900;margin-bottom:14px}
+.stats-card p{color:#cfcfcf;font-size:18px}
+
+.timeline-section,.principles-section,.news,.events,.districts-section,.library-section,.today-section,.whatsapp-section{
+  padding:100px 10%;
+}
+
+.section-title{text-align:center;margin-bottom:70px}
+.section-title h1{font-size:54px;color:#ff214f;margin-bottom:15px}
+.section-title p{color:#bdbdbd;max-width:700px;margin:auto;line-height:1.8}
+
+.timeline{position:relative;max-width:1000px;margin:auto}
+.timeline::before{content:"";position:absolute;left:20px;top:0;width:3px;height:100%;background:#ff214f}
+.timeline-item{position:relative;margin-bottom:40px;padding-left:60px}
+.timeline-item::before{
+  content:"";position:absolute;left:9px;top:8px;width:24px;height:24px;
+  background:#ff214f;border-radius:50%;box-shadow:0 0 25px rgba(255,0,60,.7);
+}
+.timeline-item span{color:#ff214f;font-weight:900;font-size:22px}
+.timeline-item h3{color:white;margin:8px 0;font-size:26px}
+.timeline-item p{color:#cfcfcf;line-height:1.8}
+
+.principles-section{
+  background:
+  radial-gradient(circle at top left,rgba(255,0,60,.08),transparent 35%),
+  radial-gradient(circle at bottom right,rgba(255,0,60,.05),transparent 30%),
+  #050505;
+}
+.principles-grid,.district-grid,.library-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;
+}
+.principle-box,.district-card,.library-card{
+  position:relative;background:linear-gradient(145deg,#121212,#090909);
+  border-radius:28px;padding:42px;overflow:hidden;transition:.35s;
+  border:1px solid rgba(255,255,255,.05);text-decoration:none;color:white;
+}
+.principle-box::before{
+  content:"";position:absolute;top:0;left:0;width:100%;height:5px;
+  background:linear-gradient(90deg,#ff003c,#ff5b7e);
+}
+.principle-box:hover,.district-card:hover,.library-card:hover{
+  transform:translateY(-10px);border-color:#ff214f;
+  box-shadow:0 18px 55px rgba(255,0,60,.22);
+}
+.principle-number{
+  position:absolute;right:25px;top:18px;font-size:70px;
+  font-weight:900;color:rgba(255,255,255,.03);
+}
+.principle-box h2,.district-card h2,.library-card h2{color:#ff214f;margin-bottom:18px;font-size:28px}
+.principle-box p,.district-card p{color:#d2d2d2;line-height:1.9}
+
+.news h2,.events h2{font-size:42px;margin-bottom:40px;color:#ff214f}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
+.card{
+  background:#111;border-radius:24px;padding:30px;
+  border:1px solid rgba(255,255,255,.06);transition:.3s;
+}
+.card:hover{transform:translateY(-6px);border-color:#ff214f}
+.card h3{color:#ff214f;margin-bottom:15px}
+.card p{color:#cfcfcf}
+
+.instagram-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:25px}
+.instagram-media{
+  margin:auto!important;width:100%!important;min-width:100%!important;
+  border-radius:20px!important;overflow:hidden!important;
+}
+
+.library-card{text-align:center}
+.library-card i{font-size:46px;color:#ff214f;margin-bottom:22px}
+
+.today-box,.whatsapp-box{
+  background:linear-gradient(145deg,#111,#090909);
+  border-radius:30px;padding:55px;text-align:center;
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 18px 55px rgba(0,0,0,.35);
+}
+.today-box span{color:#ff214f;font-weight:900;letter-spacing:2px}
+.today-box h2{margin-top:20px;line-height:1.7;color:white}
+
+.whatsapp-box i{font-size:70px;color:#25D366;margin-bottom:20px}
+.whatsapp-box h2{color:white;margin-bottom:18px}
+.whatsapp-box p{color:#cfcfcf;margin-bottom:30px}
+.whatsapp-box a{
+  display:inline-block;background:#25D366;color:white;
+  padding:14px 30px;border-radius:12px;text-decoration:none;font-weight:bold;
+}
+
+.footer{background:#050505;border-top:2px solid #ff214f;padding:70px 10% 30px}
+.footer-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:60px}
+.footer h2{color:#ff214f;margin-bottom:18px}
+.footer h3{color:#ff214f;margin-bottom:20px}
+.footer p,.footer a{
+  color:#cfcfcf;text-decoration:none;margin-bottom:12px;display:block;line-height:1.6;
+}
+.footer a:hover{color:white}
+.social-icons{display:flex;gap:14px;margin-top:20px}
+.social-icons a{
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:#111;border:1px solid #2a2a2a;color:#ff214f;
+  font-size:20px;transition:.3s;
+}
+.social-icons a:hover{background:#ff214f;color:white;transform:translateY(-4px)}
+.footer-contact i{color:#ff214f;margin-right:10px;width:18px}
+.footer-bottom{
+  margin-top:50px;border-top:1px solid #1a1a1a;
+  padding-top:20px;text-align:center;color:#777;
+}
+
+.hidden-admin{
+  position:fixed;right:8px;bottom:8px;width:9px;height:9px;
+  opacity:.18;z-index:9999;background:#ff214f;border-radius:50%;
+}
+.reveal{opacity:0;transform:translateY(45px);transition:.8s ease}
+.reveal.active{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  .navbar{flex-direction:column;gap:18px}
+  .menu-toggle{display:block}
+  nav{
+    display:none;width:100%;flex-direction:column;text-align:center;
+    margin-top:18px;gap:18px;
+  }
+  nav.active{display:flex}
+  .hero img{height:280px}
+  .section-title h1{font-size:38px}
+  .stats-card{padding:35px 20px}
+  .counter{font-size:55px}
+  .ata-eyes-container{height:140px}
+  .floating-socials{right:10px}
+}
+
+
+.more-districts{
+  display:inline-block;
+  margin-top:25px;
+  padding:14px 24px;
+  border-radius:14px;
+  background:#111;
+  border:1px solid #ff214f;
+  color:#ff214f;
+  text-decoration:none;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.more-districts:hover{
+  background:#ff214f;
+  color:white;
+  transform:translateY(-3px);
+}
+
+
+.mini-districts{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:30px;
+}
+
+.mini-box{
+  padding:14px 24px;
+  border-radius:14px;
+  background:#ff214f;
+  border:1px solid #ff214f;
+  color:white;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.mini-box:hover{
+  transform:translateY(-4px);
+  border-color:#ff214f;
+  color:#ff214f;
+}
+
+.more-districts{
+  display:inline-block;
+  margin-top:25px;
+  padding:14px 24px;
+  border-radius:14px;
+  background:#111;
+  border:1px solid #ff214f;
+  color:#ff214f;
+  text-decoration:none;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.more-districts:hover{
+  background:#ff214f;
+  color:white;
+  transform:translateY(-3px);
+}
+
+
+
+
+.login-btn{
+  padding:12px 22px;
+  border-radius:14px;
+  background:#ff214f;
+  color:white !important;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:
+  0 0 10px rgba(255,33,79,.5),
+  0 0 25px rgba(255,33,79,.35);
+  transition:.3s;
+}
+
+.login-btn:hover{
+  transform:translateY(-3px);
+  background:#ff4d73;
+  box-shadow:
+  0 0 20px rgba(255,33,79,.8),
+  0 0 40px rgba(255,33,79,.45);
+}
+
+
+
+
+
+
+</style>
+</head>
+
+<body>
+
+<div class="mouse-glow"></div>
+
+
+<div class="quote-bar">
+  <div class="ata-eyes-container">
+    <img src="goz.png" class="ata-eyes-img" alt="Atatürk Gözleri">
+  </div>
+  <div class="quote-text" id="quoteText">Egemenlik kayıtsız şartsız milletindir.</div>
+</div>
+
+<div class="top-member">
+  Sende Gel Umudu Büyütelim Geleceği Kuralım
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfeEF-umZZHVsBFeTXyeFlD8woo2tzOKLYNwcC8MccdnoZbuw/viewform" target="_blank">Üye Ol</a>
+</div>
+
+<div class="important-days">
+  <span>2026 Önemli Günler</span>
+  <div class="days-slider">19 Mayıs • 30 Ağustos • 29 Ekim • 10 Kasım</div>
+</div>
+
+<header class="navbar">
+  <a href="#" class="brand">HALK-LİS İZMİR</a>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+
+  <nav id="mobileMenu">
+    <a href="#">Ana Sayfa</a>
+    <a href="bizkimiz.html" target="_blank">Biz Kimiz?</a>
+    <a href="#ilkelerimiz">İlkelerimiz</a>
+    <a href="chp.html" target="_blank">CHP</a>
+    <a href="yonetim.html" target="_blank">Yönetim</a>
+    <a href="#tarihce">Tarihçe</a>
+    <a href="#haberler">Haberler</a>
+    <a href="#etkinlikler">Etkinlikler</a>
+    <a href="ilceler.html" target="_blank">İlçe Temsilcilikleri</a> 
+</a>
+    <a href="#kutuphane">Kütüphane</a>
+    <a href="basinda-biz.html"target="_blank">
+
+
+Basında Biz
+
+</a>
+
+
+
+
+    <a href="#footer">İletişim</a>
+    <img src="ata.png" class="ata-img" alt="Atatürk">
+<a href="uye.html"
+target="_blank"
+class="login-btn">
+
+  Üye Girişi
+
+</a>  
+</nav>
+</header>
+
+<section class="hero">
+  <img src="banner.jpg" alt="Banner">
+</section>
+
+<section class="stats-section">
+  <div class="stats-grid">
+    <a href="bizkimiz.html" target="_blank" class="stats-card">
+      <h2>BİZ KİMİZ?</h2>
+      <div class="counter"><span class="count" data-target="500">0</span>+</div>
+      <p>Üye</p>
+    </a>
+
+    <div class="stats-card">
+      <h2>OKUL</h2>
+      <div class="counter"><span class="count" data-target="40">0</span>+</div>
+      <p>Farklı okuldan genç</p>
+    </div>
+
+    <div class="stats-card">
+      <h2>ETKİNLİK</h2>
+      <div class="counter"><span class="count" data-target="15">0</span>+</div>
+      <p>Etkinlik ve buluşma</p>
+    </div>
+  </div>
+</section>
+
+<section class="timeline-section" id="tarihce">
+  <div class="section-title">
+    <h1>Tarihçemiz</h1>
+    <p>2013’ten bugüne umudu büyüten gençlik hareketi.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <span>2013</span>
+      <h3>Kuruluş</h3>
+      <p>Halkçı Liseliler, Atatürk ilke ve devrimlerini liseli gençlerle buluşturmak amacıyla kuruldu.</p>
+    </div>
+
+    <div class="timeline-item">
+      <span>2018</span>
+      <h3>Büyüme</h3>
+      <p>Farklı şehirlerde liseli gençlerin dayanışma ağı güçlenmeye başladı.</p>
+    </div>
+
+    <div class="timeline-item">
+      <span>2024</span>
+      <h3>Yeni Dönem</h3>
+      <p>Sosyal medya, saha çalışmaları ve gençlik buluşmalarıyla daha güçlü bir yapı oluştu.</p>
+    </div>
+
+    <div class="timeline-item">
+      <span>2026</span>
+      <h3>Halk-Lis İzmir</h3>
+      <p>İzmir’de umudu büyütmek ve geleceği kurmak için çalışmalarımızı sürdürüyoruz.</p>
+    </div>
+  </div>
+</section>
+
+<section class="principles-section" id="ilkelerimiz">
+  <div class="section-title">
+    <h1>İlkelerimiz</h1>
+    <p>Halk-Lis İzmir olarak Atatürk’ün altı temel ilkesini rehber kabul ediyoruz.</p>
+  </div>
+
+  <div class="principles-grid">
+    <div class="principle-box">
+      <div class="principle-number">01</div>
+      <h2>Cumhuriyetçilik</h2>
+      <p>Egemenliğin kayıtsız şartsız millete ait olduğunu savunuruz.</p>
+    </div>
+
+    <div class="principle-box">
+      <div class="principle-number">02</div>
+      <h2>Milliyetçilik</h2>
+      <p>Türkiye Cumhuriyeti’nin bağımsızlığını korumayı temel ilke kabul ederiz.</p>
+    </div>
+
+    <div class="principle-box">
+      <div class="principle-number">03</div>
+      <h2>Halkçılık</h2>
+      <p>Eşitlik ve dayanışma içinde bir toplum hedefleriz.</p>
+    </div>
+
+    <div class="principle-box">
+      <div class="principle-number">04</div>
+      <h2>Devletçilik</h2>
+      <p>Halk yararını esas alan bir anlayışı savunuruz.</p>
+    </div>
+
+    <div class="principle-box">
+      <div class="principle-number">05</div>
+      <h2>Laiklik</h2>
+      <p>Bilimi ve özgür düşünceyi temel alırız.</p>
+    </div>
+
+    <div class="principle-box">
+      <div class="principle-number">06</div>
+      <h2>İnkılapçılık</h2>
+      <p>Atatürk devrimlerini yaşatırız.</p>
+    </div>
+  </div>
+</section>
+
+<section class="news" id="haberler">
+  <h2>Haberler / Duyurular</h2>
+  <div class="cards" id="newsList"></div>
+</section>
+
+<section class="events" id="etkinlikler">
+  <h2>Etkinlikler</h2>
+
+  <div class="instagram-grid">
+    <blockquote class="instagram-media"
+    data-instgrm-permalink="https://www.instagram.com/p/DYAdlRjjI75/"
+    data-instgrm-version="14"></blockquote>
+
+    <blockquote class="instagram-media"
+    data-instgrm-permalink="https://www.instagram.com/p/DX4wj8ZjNYQ/"
+    data-instgrm-version="14"></blockquote>
+
+    <blockquote class="instagram-media"
+    data-instgrm-permalink="https://www.instagram.com/p/DX31PAKjA8T/"
+    data-instgrm-version="14"></blockquote>
+  </div>
+</section>
+<div style="text-align:center;margin-top:40px;">
+
+  <p style="
+  color:#cfcfcf;
+  margin-bottom:25px;
+  font-size:18px;
+  ">
+
+    Halk-Lis İzmir’in farklı ilçelerde örgütlenen gençlik yapılanması.
+
+  </p>
+
+  <div class="mini-districts">
+
+    <a href="ilceler.html"
+    target="_blank"
+    class="mini-box">
+
+      Foça
+
+    </a>
+
+    <a href="ilceler.html"
+    target="_blank"
+    class="mini-box">
+
+      Karşıyaka
+
+    </a>
+
+    <a href="ilceler.html"
+    target="_blank"
+    class="mini-box">
+
+      Seferihisar
+
+    </a>
+
+    <a href="ilceler.html"
+    target="_blank"
+    class="mini-box">
+
+      Konak
+
+    </a>
+
+  </div>
+
+  <div style="margin-top:30px;">
+
+    <a href="ilceler.html"
+    target="_blank"
+    class="more-districts">
+
+      Daha Fazlası →
+
+    </a>
+
+  </div>
+
+</div>
+
+
+</a>
+
+
+</div>
+
+<section class="library-section" id="kutuphane">
+  <div class="section-title">
+    <h1>Atatürk Kütüphanesi</h1>
+    <p>Denemelik bölüm: Cumhuriyetin temel eserleri.</p>
+  </div>
+
+  <div class="library-grid">
+    <a href="#" class="library-card"><i class="fa-solid fa-book"></i><h2>Nutuk</h2></a>
+    <a href="#" class="library-card"><i class="fa-solid fa-book"></i><h2>Gençliğe Hitabe</h2></a>
+    <a href="#" class="library-card"><i class="fa-solid fa-book"></i><h2>Bursa Nutku</h2></a>
+    <a href="#" class="library-card"><i class="fa-solid fa-book"></i><h2>10. Yıl Nutku</h2></a>
+  </div>
+</section>
+
+<section class="today-section">
+  <div class="today-box">
+    <span>BUGÜN TARİHTE</span>
+    <h2 id="todayText">19 Mayıs 1919: Mustafa Kemal Atatürk Samsun’a çıktı.</h2>
+  </div>
+</section>
+
+<section class="whatsapp-section">
+  <div class="whatsapp-box">
+    <i class="fa-brands fa-whatsapp"></i>
+    <h2>WhatsApp Topluluğumuza Katıl</h2>
+    <p>Duyurular, etkinlikler ve örgütlenme için topluluğumuza katıl.</p>
+    <a href="#" target="_blank">Katıl</a>
+  </div>
+</section>
+
+
+
+
+<div class="social-media-section">
+
+  <h3>Sosyal Medya</h3>
+
+  <div class="social-media-grid">
+
+    <a href="mailto:izmirhalklis353535@gmail.com"
+    target="_blank"
+    class="social-card">
+
+      <i class="fa-solid fa-envelope"></i>
+      <span>E-Posta</span>
+
+    </a>
+
+    <a href="https://x.com/izmirhalklis35"
+    target="_blank"
+    class="social-card">
+
+      <i class="fa-brands fa-x-twitter"></i>
+      <span>X</span>
+
+    </a>
+
+    <a href="https://www.youtube.com/izmirHalkLis35"
+    target="_blank"
+    class="social-card">
+
+      <i class="fa-brands fa-youtube"></i>
+      <span>YouTube</span>
+
+    </a>
+
+    <a href="https://www.facebook.com/profile.php?id=61576981030512&locale=tr_TR"
+    target="_blank"
+    class="social-card">
+
+      <i class="fa-brands fa-facebook"></i>
+      <span>Facebook</span>
+
+    </a>
+
+    <a href="https://www.tiktok.com/@izmirhalklis"
+    target="_blank"
+    class="social-card">
+
+      <i class="fa-brands fa-tiktok"></i>
+      <span>TikTok</span>
+
+    </a>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+<footer class="footer" id="footer">
+  <div class="footer-container">
+    <div>
+      <h2>HALK-LİS İzmir</h2>
+      <p>Cumhuriyetin bekçisi gençlik burada.</p>
+      <p>Atatürk ilke ve devrimleri yolunda geleceği birlikte kuruyoruz.</p>
+
+      <div class="social-icons">
+        <a href="https://www.instagram.com/izmirhalklis35/" target="_blank">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="https://www.youtube.com/@%C4%B0zmirHalkLis35" target="_blank">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <h3>Hızlı Linkler</h3>
+      <a href="#">Ana Sayfa</a>
+      <a href="bizkimiz.html" target="_blank">Biz Kimiz?</a>
+      <a href="#ilkelerimiz">İlkelerimiz</a>
+      <a href="chp.html" target="_blank">CHP</a>
+      <a href="yonetim.html" target="_blank">Yönetim</a>
+      <a href="#tarihce">Tarihçe</a>
+<a href="ilceler.html" target="_blank">
+  İlçe Temsilcilikleri
+</a>
+      <a href="#haberler">Haberler</a>
+      <a href="#etkinlikler">Etkinlikler</a>
+      <a href="kutuphane.html" target="_blank">
+  Atatürk Kütüphanesi
+</a>
+    </div>
+
+    <div class="footer-contact">
+      <h3>İletişim</h3>
+      <p><i class="fa-solid fa-location-dot"></i>İzmir, Turkey</p>
+
+      <a href="https://www.instagram.com/izmirhalklis35/" target="_blank">
+        <i class="fa-brands fa-instagram"></i>@izmirhalklis35
+      </a>
+
+      <p><i class="fa-solid fa-envelope"></i>İletişim için Instagram DM</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 | İzmir Halkçı Liseliler
+
+<a href="https://www.instagram.com/33ege35/"
+target="_blank"
+style="
+color:#ff214f;
+text-decoration:none;
+font-weight:bold;
+">
+
+Coded By; H. Ege KASAPOĞLU
+
+</a>
+
+ <a href="admin.html" target="_blank" class="admin-access">
+  Admin Panel
+</a>
+
+
+  </div>
+</footer>
+
+<a href="admin.html" class="hidden-admin" title="Admin Panel"></a>
+
+<script async src="https://www.instagram.com/embed.js"></script>
+
+<script>
+const glow = document.querySelector(".mouse-glow");
+
+document.addEventListener("mousemove", (e) => {
+  glow.style.left = e.clientX + "px";
+  glow.style.top = e.clientY + "px";
+});
+
+function toggleMenu(){
+  document.getElementById("mobileMenu").classList.toggle("active");
+}
+
+const quotes = [
+  "Egemenlik kayıtsız şartsız milletindir.",
+  "Bütün ümidim gençliktedir.",
+  "Hayatta en hakiki mürşit ilimdir.",
+  "Ne mutlu Türküm diyene.",
+  "Yurtta sulh, cihanda sulh."
+];
+
+let quoteIndex = 0;
+const quoteText = document.getElementById("quoteText");
+
+setInterval(() => {
+  quoteIndex++;
+  if(quoteIndex >= quotes.length){quoteIndex = 0;}
+  quoteText.style.opacity = 0;
+
+  setTimeout(() => {
+    quoteText.innerText = quotes[quoteIndex];
+    quoteText.style.opacity = 1;
+  },300);
+},5000);
+
+}
+
+window.addEventListener("scroll", () => {
+  const section = document.querySelector(".stats-section");
+  const position = section.getBoundingClientRect().top;
+
+  if(position < window.innerHeight - 100 && !counterStarted){
+    counterStarted = true;
+    animateCounters();
+  }
+});
+
+const newsList = document.getElementById("newsList");
+const savedNews = JSON.parse(localStorage.getItem("news")) || [];
+
+if(savedNews.length === 0){
+  const defaultNews = [
+    {title:"Yeni dönem başladı", text:"İzmir genelinde yeni dönem etkinlik planlamaları başladı.", image:""},
+    {title:"Gönüllü başvuruları açıldı", text:"Sosyal medya ve etkinlik ekipleri için başvurular başladı.", image:""},
+    {title:"Mahalle buluşmaları", text:"Yakında farklı ilçelerde halk buluşmaları düzenlenecek.", image:""}
+  ];
+
+  defaultNews.forEach(item => addNewsCard(item));
+}else{
+  savedNews.forEach(item => addNewsCard(item));
+}
+
+  function addNewsCard(item){
+
+  const newsId =
+  item.id || item.title;
+
+  newsList.innerHTML += `
+
+    <div class="card">
+
+      ${item.image ? `
+
+        <img src="${item.image}"
+        style="
+        width:100%;
+        height:220px;
+        object-fit:cover;
+        border-radius:16px;
+        margin-bottom:15px;
+        ">
+
+      ` : ""}
+
+      <h3>${item.title}</h3>
+
+      <p>${item.text}</p>
+
+      <div style="margin-top:20px;">
+
+        <input
+        id="comment-${newsId}"
+        placeholder="Yorum yaz..."
+
+        style="
+        width:100%;
+        padding:12px;
+        border-radius:10px;
+        border:1px solid #222;
+        background:#080808;
+        color:white;
+        margin-bottom:10px;
+        ">
+
+        <button
+        onclick="addComment('${newsId}')"
+
+        style="
+        padding:10px 18px;
+        border:none;
+        border-radius:10px;
+        background:#ff214f;
+        color:white;
+        font-weight:bold;
+        cursor:pointer;
+        ">
+
+          Yorum Yap
+
+        </button>
+
+      </div>
+
+      <div style="margin-top:15px;">
+
+        ${renderComments(newsId)}
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+const todayEvents = [
+  "19 Mayıs 1919: Mustafa Kemal Atatürk Samsun’a çıktı.",
+  "29 Ekim 1923: Cumhuriyet ilan edildi.",
+  "30 Ağustos 1922: Büyük Taarruz zaferle sonuçlandı.",
+  "10 Kasım 1938: Gazi Mustafa Kemal Atatürk sonsuzluğa uğurlandı."
+];
+
+let todayIndex = 0;
+
+setInterval(() => {
+  todayIndex++;
+
+  if(todayIndex >= todayEvents.length){
+    todayIndex = 0;
+  }
+
+  document.getElementById("todayText").innerText = todayEvents[todayIndex];
+},5000);
+
+const revealElements = document.querySelectorAll(
+  ".stats-card, .timeline-item, .principle-box, .card, .events, .footer, .district-card, .library-card, .today-box, .whatsapp-box"
+);
+
+revealElements.forEach(el => {
+  el.classList.add("reveal");
+});
+
+function revealOnScroll(){
+  revealElements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+
+    if(top < window.innerHeight - 80){
+      el.classList.add("active");
+    }
+  });
+
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+
+function addComment(newsId){
+
+
+
+
+  const user =
+  JSON.parse(localStorage.getItem("currentUser"));
+
+  if(!user){
+
+    alert("Yorum yapmak için giriş yapmalısın.");
+    window.location.href = "uye.html";
+    return;
+
+  }
+
+  const input =
+  document.getElementById("comment-" + newsId);
+
+  const text = input.value.trim();
+
+  if(!text){
+
+    alert("Yorum boş olamaz.");
+    return;
+
+  }
+
+  const comments =
+  JSON.parse(localStorage.getItem("comments")) || [];
+
+  comments.push({
+
+    newsId,
+    name:user.name,
+    username:user.username,
+    text,
+    date:new Date().toLocaleString("tr-TR"),
+    device:navigator.userAgent
+
+  });
+
+  localStorage.setItem(
+    "comments",
+    JSON.stringify(comments)
+  );
+
+  input.value = "";
+
+  location.reload();
+
+}
+
+
+
+
+function renderComments(newsId){
+
+  const comments =
+  JSON.parse(localStorage.getItem("comments")) || [];
+
+  const filtered =
+  comments.filter(c => c.newsId === newsId);
+
+  return filtered.map(c => `
+
+    <div style="
+      margin-top:12px;
+      padding:12px;
+      border-radius:12px;
+      background:#0b0b0b;
+      border:1px solid #222;
+    ">
+
+      <strong style="color:#ff214f;">
+
+        ${c.name}
+        (@${c.username})
+
+      </strong>
+
+      <p style="
+        margin:8px 0;
+        color:#ddd;
+      ">
+
+        ${c.text}
+
+      </p>
+
+      <small style="color:#777;">
+
+        ${c.date}
+
+      </small>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+
+
+
+const counters =
+document.querySelectorAll(".count");
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".count");
+
+  counters.forEach(counter => {
+    const target = Number(counter.getAttribute("data-target"));
+    let current = 0;
+    const step = Math.max(1, Math.ceil(target / 100));
+
+    const timer = setInterval(() => {
+      current += step;
+
+      if(current >= target){
+        counter.innerText = target;
+        clearInterval(timer);
+      }else{
+        counter.innerText = current;
+      }
+    }, 20);
+  });
+});
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>"

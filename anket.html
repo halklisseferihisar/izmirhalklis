@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anket | Halk-Lis İzmir</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  min-height:100vh;
+  background:
+  radial-gradient(circle at top left,rgba(255,0,60,.15),transparent 35%),
+  radial-gradient(circle at bottom right,rgba(255,0,60,.10),transparent 30%),
+  #050505;
+  color:white;
+  font-family:Arial,sans-serif;
+  padding:80px 10%;
+}
+
+.box{
+  max-width:760px;
+  margin:auto;
+  background:linear-gradient(145deg,#121212,#080808);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:30px;
+  padding:45px;
+  box-shadow:0 25px 70px rgba(255,0,60,.12);
+}
+
+h1{
+  color:#ff214f;
+  text-align:center;
+  margin-bottom:15px;
+  font-size:42px;
+}
+
+.desc{
+  color:#cfcfcf;
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.option{
+  background:#111;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:15px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.option:hover{
+  border-color:#ff214f;
+  transform:translateY(-3px);
+}
+
+.option.selected{
+  background:#ff214f;
+  border-color:#ff214f;
+}
+
+button{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:14px;
+  background:#ff214f;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:20px;
+}
+
+.result{
+  margin-top:30px;
+}
+
+.result-item{
+  margin-bottom:18px;
+}
+
+.bar-bg{
+  background:#111;
+  border-radius:99px;
+  overflow:hidden;
+  height:16px;
+  margin-top:8px;
+}
+
+.bar{
+  height:100%;
+  background:#ff214f;
+  width:0%;
+  transition:.5s;
+}
+
+.back{
+  display:block;
+  text-align:center;
+  margin-top:30px;
+  color:#ff214f;
+  text-decoration:none;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <h1>Anket</h1>
+
+  <p class="desc">
+    Bir sonraki etkinlik nerede olsun?
+  </p>
+
+  <div class="option" onclick="selectOption('Bornova')">Bornova</div>
+  <div class="option" onclick="selectOption('Karşıyaka')">Karşıyaka</div>
+  <div class="option" onclick="selectOption('Konak')">Konak</div>
+  <div class="option" onclick="selectOption('Buca')">Buca</div>
+
+  <button onclick="vote()">Oy Ver</button>
+
+  <div class="result" id="results"></div>
+
+  <a href="index.html" class="back">Ana Sayfaya Dön</a>
+
+</div>
+
+<script>
+let selected = null;
+
+function getVotes(){
+  return JSON.parse(localStorage.getItem("pollVotes")) || {
+    Bornova:0,
+    Karşıyaka:0,
+    Konak:0,
+    Buca:0
+  };
+}
+
+function selectOption(option){
+  selected = option;
+
+  document.querySelectorAll(".option").forEach(el => {
+    el.classList.remove("selected");
+  });
+
+  event.target.classList.add("selected");
+}
+
+function vote(){
+  if(localStorage.getItem("hasVotedPoll")){
+    alert("Bu cihazdan zaten oy verilmiş.");
+    return;
+  }
+
+  if(!selected){
+    alert("Bir seçenek seç kanka.");
+    return;
+  }
+
+  const votes = getVotes();
+  votes[selected]++;
+
+  localStorage.setItem("pollVotes", JSON.stringify(votes));
+  localStorage.setItem("hasVotedPoll", "true");
+
+  renderResults();
+}
+
+function renderResults(){
+  const votes = getVotes();
+  const total = Object.values(votes).reduce((a,b)=>a+b,0);
+  const results = document.getElementById("results");
+
+  results.innerHTML = "<h2 style='color:#ff214f;margin-bottom:20px;'>Sonuçlar</h2>";
+
+  Object.keys(votes).forEach(option => {
+    const percent = total === 0 ? 0 : Math.round((votes[option] / total) * 100);
+
+    results.innerHTML += `
+      <div class="result-item">
+        <strong>${option} - ${percent}% (${votes[option]} oy)</strong>
+        <div class="bar-bg">
+          <div class="bar" style="width:${percent}%"></div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+renderResults();
+</script>
+
+</body>
+</html>
