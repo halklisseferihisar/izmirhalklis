@@ -610,7 +610,11 @@ z-index:99999;
 }
 
 
-
+@media(max-width:768px){
+  #introScreen{
+    display:none !important;
+  }
+}
 
 
 </style>
@@ -1433,6 +1437,18 @@ introVideo.onended = () => {
   intro.style.display = "none";
 
 };
+
+
+
+if(window.innerWidth <= 768){
+  const introMobile = document.getElementById("introScreen");
+  if(introMobile){
+    introMobile.style.display = "none";
+  }
+}
+
+
+
 </script>
 
 
