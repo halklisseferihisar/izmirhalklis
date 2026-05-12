@@ -529,6 +529,90 @@ z-index:99999;
 }
 
 
+.user-welcome{
+  color:#ff214f;
+  font-weight:bold;
+  font-size:14px;
+}
+
+
+
+
+
+@media(max-width:768px){
+
+  body{
+    padding:0;
+  }
+
+  .navbar{
+    padding:14px 6%;
+  }
+
+  nav a{
+    font-size:15px;
+  }
+
+  .login-btn{
+    width:100%;
+    text-align:center;
+  }
+
+  .hero img{
+    height:320px;
+  }
+
+  .section-title h1,
+  .news h2,
+  .events h2{
+    font-size:34px;
+  }
+
+  .stats-section,
+  .timeline-section,
+  .principles-section,
+  .news,
+  .events,
+  .library-section,
+  .today-section,
+  .whatsapp-section{
+    padding:70px 6%;
+  }
+
+  .principles-grid{
+    grid-template-columns:1fr;
+  }
+
+  .mini-districts{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .mini-box,
+  .more-districts{
+    width:90%;
+    text-align:center;
+  }
+
+  .social-media-grid{
+    flex-direction:column;
+  }
+
+  .social-card{
+    width:100%;
+    justify-content:center;
+  }
+
+  #introVideo{
+    object-position:center;
+  }
+
+}
+
+
+
+
+
 </style>
 </head>
 
@@ -606,6 +690,7 @@ Basında Biz
 
     <a href="#footer">İletişim</a>
     <img src="ata.png" class="ata-img" alt="Atatürk">
+    <span id="userWelcome" class="user-welcome"></span>
 <a href="uye.html"
 target="_blank"
 class="login-btn">
@@ -1202,7 +1287,8 @@ function addComment(newsId){
 
   input.value = "";
 
-  location.reload();
+  sessionStorage.setItem("introSeen", "true");
+location.reload();
 
 }
 
@@ -1293,6 +1379,11 @@ document.addEventListener("DOMContentLoaded", () => {
 const intro =
 document.getElementById("introScreen");
 
+
+if(sessionStorage.getItem("introSeen") === "true"){
+  intro.style.display = "none";
+}
+
 const introVideo =
 document.getElementById("introVideo");
 
@@ -1308,7 +1399,18 @@ introVideo.onended = () => {
 
 };
 
+const currentUser =
+JSON.parse(localStorage.getItem("currentUser"));
 
+const userWelcome =
+document.getElementById("userWelcome");
+
+if(currentUser && userWelcome){
+
+  userWelcome.innerText =
+  "Hoş geldin, " + currentUser.username;
+
+}
 
 
 </script>
